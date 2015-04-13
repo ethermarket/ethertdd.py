@@ -42,3 +42,33 @@ class EvmContract(object):
 
         for f in self._translator.function_data:
             vars(self)[f] = kall_factory(f)
+
+
+class FileContractStore(object):
+    def __init__(self, name='', path='.', parent=None):
+        self._name = name
+        self._path = path
+        self._parent = parent
+        self._stores = {}
+        self._contents = None
+
+    def __call__(self, **kwargs):
+        if self._name == 'create':
+            return EvmContract(self._parent.abi(), self._parent.binary(), **kwargs)
+
+        if self._contents is None and self._name in ['abi', 'binary']:
+            with open('%s.%s' % (self._path[0:-1], self._name), 'r') as f:
+                self._contents = f.read()
+
+            if self._name == 'binary':
+                self._contents = self._contents.decode('hex')
+
+        return self._contents
+
+    def __getattr__(self, attr):
+        if attr not in self._stores:
+            self._stores[attr] = FileContractStore(
+                name=attr, path='%s%s/' % (self._path, self._name), parent=self
+            )
+        return self._stores[attr]
+
