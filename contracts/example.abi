@@ -1,0 +1,139 @@
+[
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "name",
+            "type" : "string32"
+         },
+         {
+            "name" : "newAddress",
+            "type" : "address"
+         }
+      ],
+      "name" : "setName",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "uint8"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "newOwner",
+            "type" : "address"
+         }
+      ],
+      "name" : "setOwner",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "uint8"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "newFee",
+            "type" : "uint32"
+         }
+      ],
+      "name" : "setFee",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "uint8"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [],
+      "name" : "forceTrue",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "uint256"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : true,
+      "inputs" : [],
+      "name" : "owner",
+      "outputs" : [
+         {
+            "name" : "",
+            "type" : "address"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [],
+      "name" : "isOwner",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "uint8"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "amount",
+            "type" : "uint32"
+         }
+      ],
+      "name" : "withdraw",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "uint8"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : true,
+      "inputs" : [
+         {
+            "name" : "",
+            "type" : "string32"
+         }
+      ],
+      "name" : "names",
+      "outputs" : [
+         {
+            "name" : "",
+            "type" : "address"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : true,
+      "inputs" : [],
+      "name" : "fee",
+      "outputs" : [
+         {
+            "name" : "",
+            "type" : "uint256"
+         }
+      ],
+      "type" : "function"
+   }
+]
