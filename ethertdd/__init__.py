@@ -77,3 +77,5 @@ class FileContractStore(object):
             )
         return self._stores[attr]
 
+    def __getitem__(self, item):
+        return self.__getattr__(item)

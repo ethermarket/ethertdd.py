@@ -61,3 +61,12 @@ In a normal testing situation, manually opening contract files and reading them 
     20000
 
 FileContractStore optionally takes a `path` keyword argument which defaults to '.' when omitted. The `create` function also optionally takes the same keyword arguments as the EvmContract's constructor does. Aside from the `create` function, FileContractStore also supplies `abi` and `binary` functions that return the contract's ABI string and its compiled binary, respectively.
+
+FileContractStore also allows contract paths to be addressed using `dict` notation:
+
+    >>> from ethertdd import FileContractStore
+    >>> fs = FileContractStore()
+    >>> contract = fs['contracts']['example'].create()
+    ('starting', 1000000, 1000000)
+
+This can be useful if the path to your contracts contains a character that would cause Python to throw a syntax error.
