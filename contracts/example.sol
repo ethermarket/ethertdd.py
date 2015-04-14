@@ -8,39 +8,39 @@ contract example{
         fee = 10000; // in wei
     }
 
-    function setName(string32 name, address newAddress) returns (uint8 r) {
-        if (isOwner()==0 || msg.value < fee || (names[name] != 0x0 && names[name] != msg.sender)) {
-            return 0;
+    function setName(string32 name, address newAddress) returns (bool r) {
+        if (!isOwner() || msg.value < fee || (names[name] != 0x0 && names[name] != msg.sender)) {
+            return false;
         }
         names[name] = newAddress;
 
         if (msg.value > fee) {
             newAddress.send(msg.value - fee);
         }
-        return 1;
+        return true;
     }
 
-    function setOwner(address newOwner) returns (uint8 r) {
-        if (isOwner()==0) return 0;
+    function setOwner(address newOwner) returns (bool r) {
+        if (!isOwner()) return false;
         owner = newOwner;
-        return 1;
+        return true;
     }
 
-    function setFee(uint32 newFee) returns (uint8 r) {
-        if (isOwner()==0) return 0;
+    function setFee(uint32 newFee) returns (bool r) {
+        if (!isOwner()) return false;
         fee = newFee;
-        return 1;
+        return true;
     }
 
-    function isOwner() returns (uint8 r) {
-        if (msg.sender == owner) return 1;
-        return 0;
-    }
-
-    function withdraw(uint32 amount) returns (uint8 r) {
-        if (isOwner()==0) return 0;
+    function withdraw(uint32 amount) returns (bool r) {
+        if (!isOwner()) return false;
 
         owner.send(amount);
-        return 1;
+        return true;
+    }
+
+    function isOwner() returns (bool r) {
+        if (msg.sender == owner) return true;
+        return false;
     }
 }

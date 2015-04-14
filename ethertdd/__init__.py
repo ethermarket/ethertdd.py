@@ -1,4 +1,13 @@
-from ethereum import tester
+from ethereum import abi, tester
+
+# Monkey patch abi module to add boolean support.
+# To be removed once it becomes unnecessary.
+abi._decode_single = abi.decode_single
+abi.decode_single = lambda data, base, sub: \
+    bool(int(data.encode('hex'), 16)) \
+    if base == 'bool' else \
+    abi._decode_single(data, base, sub)
+
 
 class EvmContract(object):
     # Most of the code in this class was pulled from the _abi_contract class
