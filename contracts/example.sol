@@ -20,10 +20,6 @@ contract example{
         return 1;
     }
 
-    function forceTrue() returns (uint r) {
-        return 7;
-    }
-
     function setOwner(address newOwner) returns (uint8 r) {
         if (isOwner()==0) return 0;
         owner = newOwner;
