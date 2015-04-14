@@ -1,6 +1,6 @@
 import pytest
-from ethertdd import EvmContract, FileContractStore
-from ethereum import tester, utils, abi
+from ethereum import tester
+from ethertdd import FileContractStore
 
 fs = FileContractStore()
 
