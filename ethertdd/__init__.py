@@ -1,6 +1,11 @@
 from ethereum import tester
 
 class EvmContract(object):
+    # Most of the code in this class was pulled from the _abi_contract class
+    # defined in state.abi_contract in https://github.com/ethereum/pyethereum/blob
+    # /a4d642e3fd100cf8db44b8e7932fba9027c23f3e/ethereum/tester.py
+    # I just modified it to take precompiled code instead of uncompiled code.
+
     def __init__(self, compiled_abi, compiled_code, sender=tester.k0,
                  endowment=0, gas=None, state=None):
         if not state:
