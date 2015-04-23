@@ -3,27 +3,6 @@
       "constant" : false,
       "inputs" : [
          {
-            "name" : "name",
-            "type" : "string32"
-         },
-         {
-            "name" : "newAddress",
-            "type" : "address"
-         }
-      ],
-      "name" : "setName",
-      "outputs" : [
-         {
-            "name" : "r",
-            "type" : "bool"
-         }
-      ],
-      "type" : "function"
-   },
-   {
-      "constant" : false,
-      "inputs" : [
-         {
             "name" : "newOwner",
             "type" : "address"
          }
@@ -50,6 +29,23 @@
          {
             "name" : "r",
             "type" : "bool"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : true,
+      "inputs" : [
+         {
+            "name" : "",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "names",
+      "outputs" : [
+         {
+            "name" : "",
+            "type" : "address"
          }
       ],
       "type" : "function"
@@ -97,29 +93,33 @@
    },
    {
       "constant" : true,
-      "inputs" : [
-         {
-            "name" : "",
-            "type" : "string32"
-         }
-      ],
-      "name" : "names",
-      "outputs" : [
-         {
-            "name" : "",
-            "type" : "address"
-         }
-      ],
-      "type" : "function"
-   },
-   {
-      "constant" : true,
       "inputs" : [],
       "name" : "fee",
       "outputs" : [
          {
             "name" : "",
             "type" : "uint256"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "name",
+            "type" : "bytes32"
+         },
+         {
+            "name" : "newAddress",
+            "type" : "address"
+         }
+      ],
+      "name" : "setName",
+      "outputs" : [
+         {
+            "name" : "r",
+            "type" : "bool"
          }
       ],
       "type" : "function"
