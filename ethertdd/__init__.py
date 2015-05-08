@@ -1,18 +1,5 @@
 from ethereum import abi, tester
 
-# Monkey patch abi module to add bool & bytes support.
-# To be removed once it becomes unnecessary.
-abi._decode_single = abi.decode_single
-def new_decode_single(data, base, sub):
-    if base == 'bool':
-        return bool(int(data.encode('hex'), 16))
-    elif base == 'bytes':
-        base = 'string'
-    return abi._decode_single(data, base, sub)
-
-abi.decode_single = new_decode_single
-
-
 class EvmContract(object):
     # Most of the code in this class was pulled from the _abi_contract class
     # defined in state.abi_contract in https://github.com/ethereum/pyethereum/blob
