@@ -3,9 +3,13 @@ contract example{
     uint public fee;
     mapping (bytes32 => address) public names;
 
-    function example() {
-        owner = msg.sender;
-        fee = 10000; // in wei
+    function example(uint initFee, address steward) {
+        if (steward == 0x0) {
+            owner = msg.sender;
+        } else {
+            owner = steward;
+        }
+        fee = initFee; // in wei
     }
 
     function setName(bytes32 name, address newAddress) returns (bool r) {
