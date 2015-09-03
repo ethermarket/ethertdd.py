@@ -84,12 +84,22 @@ class FileContractStore(object):
             return EvmContract(self._parent.abi(), self._parent.binary(),
                                self._parent._name, args, **kwargs)
 
-        if self._contents is None and self._name in ['abi', 'binary']:
+        if self._contents is not None:
+            return self._contents
+
+        if self._name in ['binary', 'bin']:
+            try:
+                with open('%s.bin' % self._path[0:-1], 'r') as f:
+                    self._contents = f.read()
+            except IOError:
+                with open('%s.binary' % self._path[0:-1], 'r') as f:
+                    self._contents = f.read()
+
+            self._contents = self._contents.decode('hex')
+
+        else:
             with open('%s.%s' % (self._path[0:-1], self._name), 'r') as f:
                 self._contents = f.read()
-
-            if self._name == 'binary':
-                self._contents = self._contents.decode('hex')
 
         return self._contents
 
