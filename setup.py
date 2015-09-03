@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='EtherTDD.py',
       version='0.1.2',
@@ -9,5 +9,5 @@ setup(name='EtherTDD.py',
       author_email='ryan@ryepdx.com',
       url='https://github.com/ryepdx/ethertdd.py/',
       packages=['ethertdd'],
-      requires=['pyethereum']
+      requires=['ethereum']
 )
