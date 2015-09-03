@@ -71,12 +71,13 @@ class EvmContract(object):
 
 
 class FileContractStore(object):
-    def __init__(self, name='', path='.', parent=None):
+    def __init__(self, name='', path='.', caching=True, parent=None):
         self._name = name
         self._path = path
         self._parent = parent
         self._stores = {}
         self._contents = None
+        self._caching = caching
 
     def __call__(self, *args, **kwargs):
         if self._name == 'create':
@@ -93,7 +94,7 @@ class FileContractStore(object):
         return self._contents
 
     def __getattr__(self, attr):
-        if attr not in self._stores:
+        if not self._caching or attr not in self._stores:
             self._stores[attr] = FileContractStore(
                 name=attr, path='%s%s/' % (self._path, self._name), parent=self
             )
