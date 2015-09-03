@@ -2,8 +2,8 @@
 
 from setuptools import setup
 
-setup(name='EtherTDD.py',
-      version='0.1.2',
+setup(name='EtherTDD',
+      version='0.1.4',
       description='Ethereum unit testing tool.',
       author='Ryan Casey',
       author_email='ryepdx@gmail.com',
