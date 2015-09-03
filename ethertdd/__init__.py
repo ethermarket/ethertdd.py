@@ -1,6 +1,9 @@
 from ethereum import abi, tester
 from ethereum.utils import is_string
 
+def set_gas_limit(new_limit):
+    tester.gas_limit = new_limit
+
 class EvmContract(object):
     # Most of the code in this class was pulled from the _abi_contract class
     # defined in state.abi_contract in https://github.com/ethereum/pyethereum/blob
