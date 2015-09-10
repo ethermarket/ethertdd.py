@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='EtherTDD',
-      version='0.1.4',
+      version='0.1.5',
       description='Ethereum unit testing tool.',
       author='Ryan Casey',
       author_email='ryepdx@gmail.com',

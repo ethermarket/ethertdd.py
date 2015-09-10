@@ -12,7 +12,7 @@ class EvmContract(object):
 
     def __init__(self, compiled_abi, compiled_code, name,
                  constructor_args=[], sender=tester.k0, endowment=0,
-                 gas=None, state=None):
+                 gas=None, state=None, event_listener=None):
         if not state:
             state = tester.state()
 
@@ -30,6 +30,10 @@ class EvmContract(object):
 
         self._translator = tester.abi.ContractTranslator(compiled_abi)
 
+        if event_listener:
+            self.state.block.log_listeners.append(
+                lambda x: event_listener(self._translator.listen(x, noprint=True)))
+
         if len(constructor_args) > 0:
             compiled_code += self._translator.encode(name, constructor_args)[4:]
 
@@ -41,15 +45,12 @@ class EvmContract(object):
         def kall_factory(f):
 
             def kall(*args, **kwargs):
-                self.state.block.log_listeners.append(
-                    lambda log: self._translator.listen(log))
                 o = self.state._send(kwargs.get('sender', tester.k0),
                                  self.address,
                                  kwargs.get('value', 0),
                                  self._translator.encode(f, args),
                                  **tester.dict_without(kwargs, 'sender',
                                                 'value', 'output'))
-                self.state.block.log_listeners.pop()
                 # Compute output data
                 if kwargs.get('output', '') == 'raw':
                     outdata = o['output']
