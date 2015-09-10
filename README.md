@@ -21,7 +21,7 @@ Depending on your system, you might need to use `sudo` to run `python setup.py i
 
 # Usage
 
-EtherTDD.py provides an EvmContract class that takes a contract's compiled JSON ABI and its compiled binary. You may also optionally supply a sender's private key (`sender`), an initial endowment (`endowment`), a gas price (`gas`), and a PyEthereum tester.state instance (`state`) via keyword arguments to the constructor.
+EtherTDD.py provides an EvmContract class that takes a contract's compiled JSON ABI and its compiled binary. You may also optionally supply a sender's private key (`sender`), an initial endowment (`endowment`), a gas price (`gas`), a PyEthereum tester.state instance (`state`), and a custom event log listener function (`log_listener`) via keyword arguments to the constructor.
 
 Here is a simple demonstration of the EvmContract class:
 
@@ -32,7 +32,8 @@ Here is a simple demonstration of the EvmContract class:
     >>> with open('contracts/example.binary', 'r') as f:
     ...    example_binary = f.read().decode('hex')
     ...
-    >>> contract = EvmContract(example_abi, example_binary)
+    >>> echo = lambda x: print x
+    >>> contract = EvmContract(example_abi, example_binary, log_listener=echo)
     ('starting', 1000000, 1000000)
     >>> contract.fee()
     10000
